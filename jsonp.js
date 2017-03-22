@@ -52,7 +52,9 @@
    */
   function jsonPromise (url, config) {
     // 把两个揉在一起, 后覆盖前
-    var _config = Object.assign(defaultConfig, config);
+    // 如果直接 Object.assign(defaultConfig, config) 的话, 会改变 defaultConfig 的取值
+    // 所以这里修改为新的空对象承载
+    var _config = Object.assign({}, defaultConfig, config);
     // 最大延时时间
     var timeout = _config.timeout;
     // jsonpcallback 的名字

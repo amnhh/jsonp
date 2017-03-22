@@ -100,7 +100,10 @@
       document.head.appendChild(jsonpScriptTag);
 
       timeoutTag = setTimeout(function () {
-        reject(`JSONP request timeout`);
+        reject({
+          state : STATE_FAIL,
+          msg : `JSONP request timeout`
+        });
         // 移除 script 标签
         clearScriptById(scriptId);
 
